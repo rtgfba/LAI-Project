@@ -6,6 +6,8 @@
 #include <sstream>
 #include <iomanip>
 #include <iostream>
+#include <cmath>
+#include <algorithm>
 
 
 
@@ -22,6 +24,33 @@ LifeAI::LifeAI(std::string userName) : user(userName) {
 
 
 void LifeAI::recommendActivities() {
+	std::map <std::string, double> activityScores;
+
+
+	for (const auto& activity : activities) {
+		double happinessScore = activity.emotionLevels[HAPPINESS] / (double)user.activityLog[activity.name];
+		double harmScore = activity.harmLevel / (double)user.activityLog[activity.name];
+
+
+		//score can be adjusted
+		double score = happinessScore - 0.5 * harmScore;
+
+		activityScores[activity.name] = score;
+
+	}
+
+	// Sort activities by scores
+
+	std::vector<std::pair<std::string, double>> sortedActivities(activityScores.begin(), activityScores.end());
+	std::sort(sortedActivities.begin(), sortedActivities.end(),
+		[](const auto& a, const auto& b) {return a.second > b.second; });
+
+
+	//Print the top recommended activities
+	std::cout << "Top recommended activities:" << std::endl;
+	for (const auto& activityScore : sortedActivities) {
+		std::cout << "Activity: " << activityScore.first << ", Score: " << activityScore.second << std::endl;
+	}
 
 }
 
