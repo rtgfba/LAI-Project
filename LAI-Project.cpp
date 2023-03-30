@@ -15,15 +15,7 @@
 
 
 
-//Enum through the differnt typ of emotions to be used in the Activity class
-enum Emotion {
-	HAPPINESS,
-	MOTIVATION,
-	ANGER,
-	FEAR,
-	GENEROSITY,
-	EMOTIONAL,
-};
+
 
 //Activity Class
 
@@ -49,116 +41,6 @@ public:
 
 
 };
-
-
-
-//User Class
-
-class User {
-public: 
-	//name of the user
-	std::string name;
-
-	//Dopamine level
-	int dopamineLevel;
-
-	//Happiness level
-	int happinessLevel;
-
-	//Harm level
-	int harmLevel;
-
-
-	//Log the activities
-	std::map<std::string, int> activityLog;
-
-
-	//Constructor
-	User(std::string name) : name(name), dopamineLevel(0), happinessLevel(0), harmLevel(0){}
-
-	
-
-
-
-
-
-
-
-
-	//Declaration 
-	void updateActivityLog(std::string activityName, int duration);
-	void updateDopamineLevel(int change);
-	void updateHappinessLevel(int change);
-	void updateHarmLevel(int change);
-
-
-
-
-
-
-	//Implementation
-
-	void updateDopamineLevel(int change) {
-		dopamineLevel += change;
-	}
-
-
-	void updateHappinessLevel(int change) {
-		happinessLevel += change;
-	}
-
-
-	void updateHarmLevel(int change) {
-		harmLevel += change;
-	}
-
-
-};
-
-
-//Life AI Class
-
-class LifeAI {
-public:
-	std::vector<Activity> activities;
-	User user;
-
-
-	//Constructor
-	LifeAI(std::string userName) : user(userName){
-	
-	}
-
-	void addActivity(Activity activity) {
-		activities.push_back(activity);
-	}
-
-
-	void recommendActivities();
-	void trackEmotions();
-	void trackHarm();
-	void provideFeedback();
-	void customizeApproach();
-
-	//Save user data
-	void saveUserData(const std::string &filename);
-	
-	//Load user data
-	void loadUserData(const std::string &filename);
-
-
-};
-
-
-
-
-
-
-
-
-
-
-
 
 
 
