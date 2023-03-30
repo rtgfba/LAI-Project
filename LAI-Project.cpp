@@ -6,6 +6,13 @@
 #include <map>
 #include <ctime>
 #include <algorithm>
+#include <fstream>
+#include <sstream>
+#include <iomanip>
+#include "lifeai.h"
+
+
+
 
 
 //Enum through the differnt typ of emotions to be used in the Activity class
@@ -70,10 +77,40 @@ public:
 	User(std::string name) : name(name), dopamineLevel(0), happinessLevel(0), harmLevel(0){}
 
 	
+
+
+
+
+
+
+
+
+	//Declaration 
 	void updateActivityLog(std::string activityName, int duration);
 	void updateDopamineLevel(int change);
 	void updateHappinessLevel(int change);
 	void updateHarmLevel(int change);
+
+
+
+
+
+
+	//Implementation
+
+	void updateDopamineLevel(int change) {
+		dopamineLevel += change;
+	}
+
+
+	void updateHappinessLevel(int change) {
+		happinessLevel += change;
+	}
+
+
+	void updateHarmLevel(int change) {
+		harmLevel += change;
+	}
 
 
 };
@@ -88,14 +125,26 @@ public:
 
 
 	//Constructor
-	LifeAI(std::string userName) : user(userName){}
+	LifeAI(std::string userName) : user(userName){
+	
+	}
 
-	void addActivity(Activity activity);
+	void addActivity(Activity activity) {
+		activities.push_back(activity);
+	}
+
+
 	void recommendActivities();
 	void trackEmotions();
 	void trackHarm();
 	void provideFeedback();
 	void customizeApproach();
+
+	//Save user data
+	void saveUserData(const std::string &filename);
+	
+	//Load user data
+	void loadUserData(const std::string &filename);
 
 
 };
@@ -117,6 +166,8 @@ public:
 
 int main()
 {
+	LifeAI.loadUserData("userData.txt");
+
 	std::string userName;
 	std::cout << "Please enter your name: ";
 	std::cin >> userName;
@@ -128,15 +179,30 @@ int main()
 	//Main loop for user interaction
 
 
-
+	std::string userInput;
 	bool running = true;
-
 	while (running) {
-		// Get user input, process it and update the AI
+		std::cout << "Enter command (add, recommend, quit): ";
+		std::cin >> userInput;
+
+		if (userInput == "add") {
+			//get user input to add an activity
+		}
+		else if (userInput == "recommend") {
+			//Call the recommendActivities() function
+		}
+		else if (userInput == "quit") {
+			running = false;
+		}
+		else {
+			std::cout << "Invalid command. Please try again." << std::endl;
+		}
 
 
 	}
 
+
+	LifeAI.saveUserData("userData.txt");
 
 	return 0;
 }

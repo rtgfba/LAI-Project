@@ -18,5 +18,13 @@
     <ClCompile Include="LAI-Project.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="lifeai.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="lifeai.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
