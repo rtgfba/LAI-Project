@@ -1,4 +1,6 @@
 #include "activity.h"
+#include "user.h"
+#include "lifeai.h"
 
 
 
