@@ -101,7 +101,7 @@ void LifeAI::trackEmotions() {
 
 
 
-//Track h arm based on the user's activity log
+//Track harm based on the user's activity log
 void LifeAI::trackHarm() {
 
 	int totalHarm = 0;
