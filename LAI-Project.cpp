@@ -10,37 +10,14 @@
 #include <sstream>
 #include <iomanip>
 #include "lifeai.h"
+#include "user.h"
+#include "activity.h"
 
 
 
 
 
 
-
-//Activity Class
-
-class Activity {
-
-public:
-	//name of the activity
-	std::string name;
-
-	//Assign a value to the specific emotion and store it
-	std::map<Emotion, int> emotionLevels;
-
-	//Create variable for harm level
-	int harmLevel;
-
-	//Create variable for the duration of the activity
-	int duration;
-
-	
-	//Constructor 
-	Activity(std::string name, std::map<Emotion,int> emotionLevels, int harmLevel, int duration)
-		:name(name), emotionLevels(emotionLevels), harmLevel(harmLevel), duration(duration){}
-
-
-};
 
 
 
