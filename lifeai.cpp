@@ -8,6 +8,8 @@
 #include <iostream>
 #include <cmath>
 #include <algorithm>
+#include "user.h"
+#include "activity.h"
 
 
 
@@ -59,6 +61,38 @@ void LifeAI::recommendActivities() {
 
 
 void LifeAI::trackEmotions() {
+	std::map<Emotion, int> totalEmotions;
+
+	for (const auto& activityEntry : user.activityLog) {
+
+		const std::string& activityName = activityEntry.first;
+		int activityDuration = activityEntry.second;
+
+		for (const auto& activity : activities) {
+			if (activity.name == activityName) {
+				for (const auto& emotionEntry : activity.emotionLevels) {
+					Emotion emotion = emotionEntry.first;
+					int emotionValue = emotionEntry.second;
+
+
+
+					//Calculate the total emotion value based on the duration
+					totalEmotions[emotion] += emotionValue * activityDuration;
+				}
+			}
+		}
+	}
+
+	std::cout << "Emotions tracked for user " << user.name << ":" << std::endl;
+
+	for (const auto& emotionEntry : totalEmotions) {
+		Emotion emotion = emotionEntry.first;
+		int totalEmotionValue = emotionEntry.second;
+
+
+		std::cout << "Emotion: " << emotion << ", Value: " << totalEmotionValue << std::endl;
+	}
+
 
 }
 
