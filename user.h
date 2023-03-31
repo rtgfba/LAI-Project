@@ -15,6 +15,13 @@ public:
 	int dopamineLevel;
 	int happinessLevel;
 	int harmLevel;
+	int motivationLevel;
+	int angerLevel;
+	int fearLevel;
+	int generosityLevel;
+	int emotionalLevel;
+
+
 	std::map<std::string, int> activityLog;
 
 
@@ -25,7 +32,7 @@ public:
 	void updateDopamineLevel(int change);
 	void updateHappinessLevel(int change);
 	void updateHarmLevel(int change);
-
+	void updateEmotionLevel(Emotion emotion, int change);
 
 
 };

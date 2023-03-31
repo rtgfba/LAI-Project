@@ -30,7 +30,7 @@ void LifeAI::recommendActivities() {
 
 
 	for (const auto& activity : activities) {
-		double happinessScore = activity.emotionLevels[HAPPINESS] / (double)user.activityLog[activity.name];
+		double happinessScore = activity.emotionLevels.at(HAPPINESS) / (double)user.activityLog[activity.name];
 		double harmScore = activity.harmLevel / (double)user.activityLog[activity.name];
 
 
@@ -101,27 +101,125 @@ void LifeAI::trackEmotions() {
 
 
 
-
+//Track h arm based on the user's activity log
 void LifeAI::trackHarm() {
 
+	int totalHarm = 0;
+
+	for (const auto& activityEntry : user.activityLog) {
+		const std::string& activityName = activityEntry.first;
+		int activityDuration = activityEntry.second;
+
+		for (const auto& activity : activities) {
+			if (activity.name == activityName) {
+				totalHarm += activity.harmLevel * activityDuration;
+			}
+		}
+	}
+
+	user.harmLevel = totalHarm;
+	std::cout << "Total harm for user " << user.name << ": " << totalHarm << std::endl;
 }
 
 
 
 
-
+//Provide feedback based on the user's activity log and current emotion state
 void LifeAI::provideFeedback() {
 
+	std::cout << "Feedback for user " << user.name << ":" << std::endl;
+
+
+	//Compute feedback based on the user's tracked meotions and harm levels
+	//ML capabilities
+
+	if (user.harmLevel > 100) {
+		std::cout << "Warning: High harm level detected. Consider reducing activities with high harm levels." << std::endl;
+	}
+
+
+	if (user.harmLevel < 50) {
+		std::cout << "You seem to be unhappy. Consider increasing activities that make you happy." << std::endl;
+	}
+
+
+	//etc...
 }
 
 
 
 
 
-
+//Customize the AI's approach based on the user's prefence and data
 void LifeAI::customizeApproach() {
 
+	//Can also use ML techniques and other algorithms to make better recommendations
+	//
+
 }
+
+
+bool LifeAI::validateActivity(const Activity& activity) {
+	//Validation check for activity name
+	if (activity.name.empty()) {
+		std::cout << "Activity name cannot be empty." << std::endl;
+		return false;
+	}
+
+	//Validation check for emotion levels
+	for (const auto& emotionLevel : activity.emotionLevels) {
+		if (emotionLevel.second < 0) {
+			std::cout << "Emotion levels must be  non-negative." << std::endl;
+			return false;
+		}
+	}
+
+
+
+}
+
+
+bool LifeAI::addActivity(const Activity& activity) {
+
+	if (validateActivity(activity)) {
+		activities.push_back(activity);
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+
+
+//checks if an activity exists in the activities vector
+bool LifeAI::activityExists(const std::string& activityName) {
+	for (const auto& activity : activities) {
+		if (activity.name == activityName) {
+			return true;
+		}
+	}
+	return false;
+}
+
+void LifeAI::updateEmotionalLevels(const Activity& activity) {
+	for (const auto& emotionLevel : activity.emotionLevels) {
+		user.updateEmotionLevel(emotionLevel.first, emotionLevel.second);
+	}
+}
+
+bool LifeAI::updateUserActivity(const Activity &activity, int duration) {
+	for (const auto& emotionEntry : activity.emotionLevels) {
+		Emotion emotion = emotionEntry.first;
+		int emotionChange = emotionEntry.second * duration;
+		user.updateEmotionLevel(emotion, emotionChange);
+	}
+}
+
+
+
+
+
 
 
 

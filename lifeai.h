@@ -25,12 +25,16 @@ public:
 
 	//Life AI declrations 
 
-	void addActivity(Activity activity);
+	bool addActivity(const Activity& activity);
 	void recommendActivities();
 	void trackEmotions();
 	void trackHarm();
 	void provideFeedback();
 	void customizeApproach();
+	bool validateActivity(const Activity& activity);
+	bool updateUserActivity(const Activity& activity, int duration);
+	bool activityExists(const std::string& activityName);
+	void updateEmotionalLevels(const Activity& activity);
 
 	//Save user data
 	void saveUserData(const std::string& filename);
