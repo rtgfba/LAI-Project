@@ -18,6 +18,12 @@ public:
 	//Name of the user
 	std::string name;
 
+	//
+	std::string bestFeelingState;
+
+	//
+	std::vector<std::string> relatedActivities;
+
 
 
 	
@@ -88,8 +94,11 @@ public:
 	//reeset emotion levels
 	void resetEmotionLevels();
 
-
-
+	//
+	const std::string getBestFeelingState();
+	void setBestFeelingState(const std::string &state);
+	const std::vector<std::string> getRelatedActivities();
+	void addRelatedActivity(const std::string& activity);
 
 };
 
