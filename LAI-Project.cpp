@@ -25,7 +25,7 @@
 
 int main()
 {
-	LifeAI.loadUserData("userData.txt");
+	/*LifeAI.loadUserData("userData.txt");*/
 
 	std::string userName;
 	std::cout << "Please enter your name: ";
@@ -61,7 +61,7 @@ int main()
 	}
 
 
-	LifeAI.saveUserData("userData.txt");
+	/*LifeAI.saveUserData("userData.txt");*/
 
 	return 0;
 }

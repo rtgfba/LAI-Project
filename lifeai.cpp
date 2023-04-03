@@ -16,7 +16,7 @@
 //Implementation
 
 
-//Constructor
+//Constructor initializes the user object with the provided username
 LifeAI::LifeAI(std::string userName) : user(userName) {
 
 
@@ -25,6 +25,9 @@ LifeAI::LifeAI(std::string userName) : user(userName) {
 
 
 
+
+//This method calculates a score for each activity, taking into account the happiness and harm levels associated with the activity.
+//Activities are sorted by their scores, and the top recommended activities are printed.
 void LifeAI::recommendActivities() {
 	std::map <std::string, double> activityScores;
 
@@ -60,6 +63,9 @@ void LifeAI::recommendActivities() {
 
 
 
+
+//This method calculates the total emotion value for each emotion  type based on the user's activity log
+//It prints the total emotion value for the user
 void LifeAI::trackEmotions() {
 	std::map<Emotion, int> totalEmotions;
 
@@ -101,7 +107,7 @@ void LifeAI::trackEmotions() {
 
 
 
-//Track harm based on the user's activity log
+//Track harm based on the user's activity log and assigns it to user.harmLevel.It also prints the total harm level for the user
 void LifeAI::trackHarm() {
 
 	int totalHarm = 0;
@@ -125,6 +131,7 @@ void LifeAI::trackHarm() {
 
 
 //Provide feedback based on the user's activity log and current emotion state
+//uses a simple conditional s tatement to print messages depending on the user's current state
 void LifeAI::provideFeedback() {
 
 	std::cout << "Feedback for user " << user.name << ":" << std::endl;
@@ -151,6 +158,7 @@ void LifeAI::provideFeedback() {
 
 
 //Customize the AI's approach based on the user's prefence and data
+//placeholder for future customization
 void LifeAI::customizeApproach() {
 
 	//Can also use ML techniques and other algorithms to make better recommendations
@@ -159,6 +167,9 @@ void LifeAI::customizeApproach() {
 }
 
 
+
+//this method checks if the given activity is valid (non-empty name, non-negative emotion level)
+//it returns true if the activity is valid and false otherwise
 bool LifeAI::validateActivity(const Activity& activity) {
 	//Validation check for activity name
 	if (activity.name.empty()) {
@@ -178,7 +189,7 @@ bool LifeAI::validateActivity(const Activity& activity) {
 
 }
 
-
+//This method adds a validated ativity to the activities vector
 bool LifeAI::addActivity(const Activity& activity) {
 
 	if (validateActivity(activity)) {
@@ -202,12 +213,16 @@ bool LifeAI::activityExists(const std::string& activityName) {
 	return false;
 }
 
+
+//This method updates the uer's emotional level based on the given activity
 void LifeAI::updateEmotionalLevels(const Activity& activity) {
 	for (const auto& emotionLevel : activity.emotionLevels) {
 		user.updateEmotionLevel(emotionLevel.first, emotionLevel.second);
 	}
 }
 
+
+//This method updates the user's activity and emotional levels based on the given activity and duration
 bool LifeAI::updateUserActivity(const Activity &activity, int duration) {
 	for (const auto& emotionEntry : activity.emotionLevels) {
 		Emotion emotion = emotionEntry.first;
@@ -215,14 +230,6 @@ bool LifeAI::updateUserActivity(const Activity &activity, int duration) {
 		user.updateEmotionLevel(emotion, emotionChange);
 	}
 }
-
-
-
-
-
-
-
-
 
 
 
