@@ -65,3 +65,27 @@ void User::updateEmotionLevel(Emotion emotion, int change) {
 		emotionalLevel += change;
 	}
 }
+
+//Implement getters
+const int User::getDopamineLevel() { return dopamineLevel;}
+const int User::getHappinessLevel() { return happinessLevel; }
+const int User::getHarmLevel() { return harmLevel; }
+const int User::getMotivationLevel() { return motivationLevel; }
+const int User::getAngerLevel() { return angerLevel; }
+const int User::getFearLevel() { return fearLevel; }
+const int User::getGenerosityLevel() { return generosityLevel; }
+const int User::getEmotionalLevel() { return emotionalLevel; }
+
+
+//Reset emotions
+void User::resetEmotionLevels() {
+	dopamineLevel = 0;
+	happinessLevel = 0;
+	harmLevel = 0;
+	motivationLevel = 0;
+	angerLevel = 0;
+	fearLevel = 0;
+	generosityLevel = 0;
+	emotionalLevel = 0;
+
+}
