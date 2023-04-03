@@ -3,6 +3,11 @@
 #include "lifeai.h"
 
 
+//User.cpp contains the implementation of the User class methods in user.h
+
+
+//User class constructor initializes the User object with the provided userName. It also sets the initial values for
+//dopamineLevel, happinessLevel, motivationLevel, etc.. to 0
 User::User(std::string userName) : name(userName), dopamineLevel(0), happinessLevel(0), harmLevel(0), motivationLevel(0), angerLevel(0)
 , fearLevel(0), generosityLevel(0), emotionalLevel(0)
 {
@@ -13,31 +18,33 @@ User::User(std::string userName) : name(userName), dopamineLevel(0), happinessLe
 }
 
 
+//method for updating user's activity log with the specified activity name and duration
 void User::updateActivityLog(std::string activityName, int duration) {
 
-	//implementation
+	activityLog[activityName] += duration;
 
 }
 
 
-
+//Updates user's dopamine level by adding the provided change value
 void User::updateDopamineLevel(int change) {
 	dopamineLevel += change;
 
 }
 
-
+//Updates user's happiness level by adding the provided change value
 void User::updateHappinessLevel(int change) {
 	happinessLevel += change;
 }
 
-
+//Updates user's harm level by adding the provided change value
 void User::updateHarmLevel(int change) {
 	harmLevel += change;
 
 }
 
-
+//updateEmotionLevel method updates the user's emotion level ofr the specified emotion by adding the provided
+//change value. It checks the emotion parameter and updates the corresponding emotion level accordingly
 void User::updateEmotionLevel(Emotion emotion, int change) {
 	if (emotion == HAPPINESS) {
 		happinessLevel += change;
