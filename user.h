@@ -19,6 +19,9 @@ public:
 	std::string name;
 
 
+
+	
+	
 	//Current dopamine level
 	int dopamineLevel;
 	
@@ -53,6 +56,8 @@ public:
 	//User constructor that initializes the user object with a name
 	User(std::string name);
 
+
+
 	//Updates the user's activityLog by adding the duration for the given activity
 	void updateActivityLog(std::string activityName, int duration);
 
@@ -67,6 +72,23 @@ public:
 
 	//Updates the user's emotion level by adding the provided change value
 	void updateEmotionLevel(Emotion emotion, int change);
+
+
+	//Include getter functions which are useful for displaying info about the user and making decisons in the future
+	const int getDopamineLevel();
+	const int getHappinessLevel();
+	const int getHarmLevel();
+	const int getMotivationLevel();
+	const int getAngerLevel();
+	const int getFearLevel();
+	const int getGenerosityLevel();
+	const int getEmotionalLevel();
+
+
+	//reeset emotion levels
+	void resetEmotionLevels();
+
+
 
 
 };
