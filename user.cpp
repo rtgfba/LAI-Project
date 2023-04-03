@@ -89,3 +89,23 @@ void User::resetEmotionLevels() {
 	emotionalLevel = 0;
 
 }
+
+const std::string User::getBestFeelingState() {
+	return bestFeelingState;
+}
+
+
+
+void User::setBestFeelingState(const std::string &state) {
+	bestFeelingState = state;
+}
+
+
+const std::vector<std::string> User::getRelatedActivities() {
+	return relatedActivities;
+	;
+}
+
+void User::addRelatedActivity(const std::string &activity) {
+	relatedActivities.push_back(activity);
+}
